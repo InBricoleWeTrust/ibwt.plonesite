@@ -1,0 +1,5 @@
+ibwt.ibwt.plonesite Installation
+=================================================================================
+
+To install ibwt.ibwt.plonesite, follow this `documentation <http://plone.org/documentation/kb/installing-add-ons-quick-how-to>`_.
+

@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="ibwt.plonesite">
+
+  <!-- ' ibwt.plonesite' Zope 3 browser layer -->
+  <interface name="ibwt.plonesite-theme"
+      interface="ibwt.plonesite.interfaces.IThemeSpecific"
+      type="zope.publisher.interfaces.browser.IBrowserSkinType"
+    />
+  <interface  name="ibwt.plonesite" interface="ibwt.plonesite.interfaces.ILayer" />
+
+  <!-- Viewlets registration -->
+
+  <!-- Zope 3 browser views -->
+  <!--
+  <include package="plone.app.contentmenu"/>
+    <browser:page
+        layer="ibwt.plonesite.interfaces.ILayer"
+        for="ibwt.plonesite.interface.mycontent"
+        menu="plone_displayviews"
+        name="MyView"
+        class=".view.MyView"
+        allowed_interface=".view.IMyView"
+        permission="zope2.View"
+      />
+  -->
+
+  <!-- Zope 3 browser resources -->
+
+  <!-- Resource directory -->
+  <browser:resourceDirectory
+      name="ibwt.plonesite"
+      directory="resources"
+      layer="ibwt.plonesite.interfaces.ILayer"
+    />
+
+
+  <!-- vim:set ft=xml: -->
+</configure>

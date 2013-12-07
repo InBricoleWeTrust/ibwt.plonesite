@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="ibwt.plonesite">
+  <!-- Include direct package dependencies -->
+  <genericsetup:registerProfile
+      name="qi"
+      title="ibwt Policy QI"
+      directory="profiles/qi"
+      description="Turn a Plone site into the ibwt QIINFO site."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
+  <genericsetup:registerProfile
+      name="default"
+      title="ibwt.plonesite"
+      directory="profiles/default"
+      description="Install the ibwt.plonesite addon on this plone site."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
+  <genericsetup:registerProfile
+      title="ibwt.plonesite uninstall"
+      name="uninstall"
+      description="Uninstall the ibwt.plonesite addon on tbis plone site."
+      directory="profiles/uninstall"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      />
+  <genericsetup:importStep
+      name="ibwt_plonesite setupVarious"
+      title="various setup for ibwt.plonesite "
+      description="description"
+      handler="ibwt.plonesite.setuphandlers.setupVarious">
+    <depends name="plone-content"/>
+  </genericsetup:importStep>
+  <!-- migration steps -->
+  <genericsetup:importStep
+      name="ibwt_plonesite setupQi"
+      title="Quick Installer products dependencies setup for ibwt.plonesite"
+      description="description"
+      handler="ibwt.plonesite.setuphandlers.setupQi">
+    <depends name="plone-content"/>
+  </genericsetup:importStep>
+  <!-- -->
+  <utility factory="ibwt_plonesite.HiddenProducts" name="ibwt_plonesite.hiddenproducts"/>
+  <utility factory="ibwt_plonesite.HiddenProfiles" name="ibwt_plonesite.hiddenprofiles"/>
+  <include package=".upgrades"/>
+</configure>

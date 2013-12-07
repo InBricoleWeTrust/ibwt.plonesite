@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<layers>
+  <layer name="ibwt.plonesite-theme" interface="ibwt.plonesite.interfaces.IThemeSpecific"/>
+  <layer name="ibwt.plonesite" interface="ibwt.plonesite.interfaces.ILayer"/>
+</layers>

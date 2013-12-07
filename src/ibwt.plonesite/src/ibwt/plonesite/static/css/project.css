@@ -1,0 +1,13 @@
+/* public css reset margin of 960 lets fix this */
+#portal-globalnav {
+    margin: 0 10px 1em 10px;
+}
+/*FIX livesearch align and go over add drop down menu*/
+#portal-searchbox{
+    position: relative;
+    z-index: 10;
+}
+/*FIX personal tools drop down to be over searchbox*/
+#portal-personaltools{
+    z-index: 15;
+}
