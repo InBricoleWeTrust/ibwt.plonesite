@@ -1,0 +1,37 @@
+<VirtualHost ${listen}:${port}>
+ServerAdmin     contact@inbricolewetrust.net
+DocumentRoot    ${buildout:directory}
+ServerName      ${host}
+ErrorLog        ${buildout:directory}/var/log/apache/${host}_log
+TransferLog     ${buildout:directory}/var/log/apache/${host}-access_log
+CustomLog       ${buildout:directory}/var/log/apache/${host}-access_log combined
+DirectoryIndex   index.html index.htm
+<Directory "${buildout:directory}">
+    Options  ExecCGI IncludesNOEXEC FollowSymLinks -Indexes
+    AllowOverride All
+    Order allow,deny
+    Allow from all
+</Directory>
+ProxyRequests off
+<Proxy *>
+  Order allow,deny
+  Allow from all
+</Proxy>
+RewriteEngine  on
+
+# /zmiroot -> access to zmi
+ProxyPass         /zmiroot/ http://${hosts:zope-front}:${ports:zope-front}/VirtualHostBase/${scheme}/${host}:${port}/VirtualHostRoot/_vh_zmiroot/ retry=1
+ProxyPassReverse  /zmiroot/ http://${hosts:zope-front}:${ports:zope-front}/VirtualHostBase/${scheme}/${host}:${port}/VirtualHostRoot/_vh_zmiroot/
+
+# supervisor
+ProxyPass         /supervisor/ http://${hosts:supervisor}:${ports:supervisor}/ retry=1
+ProxyPassReverse  /supervisor/ http://${hosts:supervisor}:${ports:supervisor}/
+
+# /-> vhmonster proxyreverse because of redirects !
+ProxyPass         /     http://${hosts:zope-front}:${ports:zope-front}/VirtualHostBase/${scheme}/${host}:${port}/${v:plonesite}/VirtualHostRoot/ retry=1
+ProxyPassReverse  /     http://${hosts:zope-front}:${ports:zope-front}/VirtualHostBase/${scheme}/${host}:${port}/${v:plonesite}/VirtualHostRoot/
+
+#RewriteLog "${buildout:directory}/var/log/apache/rewrite.log"
+#RewriteLogLevel 3
+
+</VirtualHost>
