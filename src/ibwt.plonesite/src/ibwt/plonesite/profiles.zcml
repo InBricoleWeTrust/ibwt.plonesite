@@ -27,7 +27,7 @@
       for="Products.CMFPlone.interfaces.IPloneSiteRoot"
       />
   <genericsetup:importStep
-      name="ibwt_plonesite setupVarious"
+      name="ibwt.plonesite setupVarious"
       title="various setup for ibwt.plonesite "
       description="description"
       handler="ibwt.plonesite.setuphandlers.setupVarious">
@@ -35,14 +35,14 @@
   </genericsetup:importStep>
   <!-- migration steps -->
   <genericsetup:importStep
-      name="ibwt_plonesite setupQi"
+      name="ibwt.plonesite setupQi"
       title="Quick Installer products dependencies setup for ibwt.plonesite"
       description="description"
       handler="ibwt.plonesite.setuphandlers.setupQi">
     <depends name="plone-content"/>
   </genericsetup:importStep>
   <!-- -->
-  <utility factory="ibwt_plonesite.HiddenProducts" name="ibwt_plonesite.hiddenproducts"/>
-  <utility factory="ibwt_plonesite.HiddenProfiles" name="ibwt_plonesite.hiddenprofiles"/>
+  <utility factory="ibwt.plonesite.HiddenProducts" name="ibwt.plonesite.hiddenproducts"/>
+  <utility factory="ibwt.plonesite.HiddenProfiles" name="ibwt.plonesite.hiddenprofiles"/>
   <include package=".upgrades"/>
 </configure>
